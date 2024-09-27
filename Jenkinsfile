@@ -29,5 +29,11 @@ pipeline {
         sh 'docker push honeyy02/weather-app'
       }
     }
+    stage('Deployment') {
+      steps {
+        sh 'kubectl apply -f deployment.yaml'
+        sh 'kubectl apply -f service.yaml'
+      }
+    }
   }
 }
