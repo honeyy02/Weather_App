@@ -14,7 +14,7 @@ pipeline {
     }
     stage('Docker Run') {
       steps {
-        sh 'docker run honeyy02/weather-app'
+        sh 'docker run -d honeyy02/weather-app'
       }
     }
     stage('Docker Login') {
