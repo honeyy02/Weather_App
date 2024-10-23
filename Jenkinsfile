@@ -32,7 +32,7 @@ pipeline {
     stage('Deployment') {
       steps {
          script {
-          sh 'kubectl apply -f config.yaml --validate=false'
+          sh 'kubectl apply -f config.yaml --validate=false --request-timeout=60s'
           sh 'kubectl apply -f secret.yaml --validate=false'
           sh 'kubectl apply -f deployment.yaml --validate=false'
           sh 'kubectl apply -f service.yaml --validate=false'
