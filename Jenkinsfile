@@ -32,8 +32,11 @@ pipeline {
     stage('Deployment') {
       steps {
          script {
+          sh 'kubectl apply -f config.yaml'
+          sh 'kubectl apply -f secret.yaml'
           sh 'kubectl apply -f deployment.yaml'
           sh 'kubectl apply -f service.yaml'
+         
         }
       }
     }
