@@ -1,0 +1,7 @@
+# configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: weather-config
+data:
+  WEATHER_API_URL: "https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api_key}"
