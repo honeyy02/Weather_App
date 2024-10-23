@@ -1,22 +1,29 @@
+# deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: weather-app-deployment
-  labels:
-    app: weather-app
+  name: weather-app
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: weather-app
+      app: weather
   template:
     metadata:
       labels:
-        app: weather-app
+        app: weather
     spec:
       containers:
-        - name: weather-app
-          image: honeyy02/weather-app:latest
-          ports:
-            - containerPort: 80
-          imagePullPolicy: Always
+      - name: weather-app
+        image: honeyy02/weather-app # Replace with your Docker image name
+        env:
+        - name: WEATHER_API_URL
+          valueFrom:
+            configMapKeyRef:
+              name: weather-config  # Reference to your ConfigMap
+              key: WEATHER_API_URL
+        - name: WEATHER_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: weather-secret  # Reference to your Secret
+              key: WEATHER_API_KEY
